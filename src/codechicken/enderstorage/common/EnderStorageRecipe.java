@@ -151,6 +151,16 @@ public class EnderStorageRecipe implements IRecipe
                     'O', Blocks.obsidian,
                     'C', Items.cauldron,
                     'W', new ItemStack(Blocks.wool, 1, i));
+
+            GameRegistry.addRecipe(new ItemStack(EnderStorage.blockEnderChest, 1, 1 << 12 | EnderStorageManager.getFreqFromColours(i, i, i)),
+                    "bWb",
+                    "OCO",
+                    "bpb",
+                    'b', Items.blaze_rod,
+                    'p', Items.ender_eye,
+                    'O', Blocks.obsidian,
+                    'C', Items.cauldron,
+                    'W', new ItemStack(Blocks.wool, 1, i));
         }
     }
 

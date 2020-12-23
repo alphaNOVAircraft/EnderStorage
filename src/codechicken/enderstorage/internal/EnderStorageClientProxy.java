@@ -1,6 +1,7 @@
 package codechicken.enderstorage.internal;
 
 import codechicken.core.ClientUtils;
+import codechicken.enderstorage.storage.liquid.TileEnderTankHighCapacity;
 import codechicken.lib.packet.PacketCustom;
 import codechicken.core.CCUpdateChecker;
 import codechicken.enderstorage.common.ItemEnderStorageRenderer;
@@ -31,6 +32,7 @@ public class EnderStorageClientProxy extends EnderStorageProxy
 
         ClientRegistry.bindTileEntitySpecialRenderer(TileEnderChest.class, new EnderChestRenderer());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEnderTank.class, new EnderTankRenderer());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEnderTankHighCapacity.class, new EnderTankRenderer());
     }
     
     public static float getPearlBob(double time)

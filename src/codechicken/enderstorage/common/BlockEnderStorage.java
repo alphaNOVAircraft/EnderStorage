@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import codechicken.enderstorage.storage.liquid.TileEnderTankHighCapacity;
 import codechicken.lib.raytracer.RayTracer;
 import codechicken.lib.raytracer.IndexedCuboid6;
 import codechicken.lib.vec.BlockCoord;
@@ -57,6 +58,8 @@ public class BlockEnderStorage extends BlockContainer
                 return new TileEnderChest();
             case 1:
                 return new TileEnderTank();
+            case 2:
+                return new TileEnderTankHighCapacity();
         }
         return null;
     }
@@ -194,6 +197,7 @@ public class BlockEnderStorage extends BlockContainer
     public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs, List list) {
         list.add(new ItemStack(this, 1, 0));
         list.add(new ItemStack(this, 1, 0x1000));
+        list.add(new ItemStack(this, 1, 0x2000));
     }
 
     @Override

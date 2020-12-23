@@ -32,12 +32,12 @@ public class TankSynchroniser
 {
     public static abstract class TankState
     {
-        public EnderLiquidStorage storage;
+        public ISharedEnderLiquidStorage storage;
         public FluidStack c_liquid = FluidUtils.emptyFluid();
         public FluidStack s_liquid = FluidUtils.emptyFluid();
         public FluidStack f_liquid = FluidUtils.emptyFluid();
         
-        public void reloadStorage(EnderLiquidStorage storage)
+        public void reloadStorage(ISharedEnderLiquidStorage storage)
         {
             this.storage = storage;
         }
@@ -111,14 +111,14 @@ public class TankSynchroniser
         }
 
         @Override
-        public void sendSyncPacket()
+          public void sendSyncPacket()
         {
             if(!tracking)
                 return;
             
             PacketCustom packet = new PacketCustom(EnderStorageSPH.channel, 4);
-            packet.writeShort(storage.freq);
-            packet.writeString(storage.owner);
+            packet.writeShort(storage.getFreq());
+            packet.writeString(storage.getOwner());
             packet.writeFluidStack(s_liquid);
             packet.sendToPlayer(player);
         }

@@ -7,13 +7,12 @@ import codechicken.enderstorage.api.EnderStorageManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidTankInfo;
-import net.minecraftforge.fluids.IFluidHandler;
 import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.FluidTankInfo;
 
-public class EnderLiquidStorage extends AbstractEnderStorage implements ISharedEnderLiquidStorage
+public class EnderLiquidStorageHighCapacity extends AbstractEnderStorage implements ISharedEnderLiquidStorage
 {
-    public static int CAPACITY = 256 * FluidUtils.B;
+    public static int CAPACITY = 4096 * FluidUtils.B;
 
     private class Tank extends ExtendedFluidTank
     {
@@ -29,7 +28,7 @@ public class EnderLiquidStorage extends AbstractEnderStorage implements ISharedE
 
     private Tank tank;
 
-    public EnderLiquidStorage(EnderStorageManager manager, String owner, int freq) {
+    public EnderLiquidStorageHighCapacity(EnderStorageManager manager, String owner, int freq) {
         super(manager, owner, freq);
         tank = new Tank(CAPACITY);
     }

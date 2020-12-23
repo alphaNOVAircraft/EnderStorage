@@ -25,6 +25,7 @@ import codechicken.lib.vec.SwapYZ;
 import codechicken.enderstorage.api.EnderStorageManager;
 import codechicken.enderstorage.common.RenderCustomEndPortal;
 import codechicken.enderstorage.common.RenderEnderStorage;
+import codechicken.enderstorage.storage.liquid.ITileEnderTanks;
 import codechicken.enderstorage.internal.EnderStorageClientProxy;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
@@ -74,9 +75,9 @@ public class EnderTankRenderer extends TileEntitySpecialRenderer
         CCRenderState.pullLightmap();
         CCRenderState.useNormals = true;
         
-        renderTank(tank.rotation, (float) MathHelper.interpolate(tank.pressure_state.b_rotate, tank.pressure_state.a_rotate, f)*0.01745F, 
-                tank.freq, !tank.owner.equals("global"), x, y, z, EnderStorageClientProxy.getTimeOffset(tile.xCoord, tile.yCoord, tile.zCoord));
-        renderLiquid(tank.liquid_state.c_liquid, x, y, z);
+        renderTank(tank.getRotation(), (float) MathHelper.interpolate(tank.getPressureState().b_rotate, tank.getPressureState().a_rotate, f)*0.01745F,
+                tank.getFreq(), !tank.getOwner().equals("global"), x, y, z, EnderStorageClientProxy.getTimeOffset(tile.xCoord, tile.yCoord, tile.zCoord));
+        renderLiquid(tank.getLiquidState().c_liquid, x, y, z);
     }
     
     public static void renderTank(int rotation, float valve, int freq, boolean owned, double x, double y, double z, int offset)

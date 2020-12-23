@@ -1,5 +1,6 @@
 tile.enderchest|0.name=Ender Chest
 tile.enderchest|1.name=Ender Tank
+tile.enderchest|2.name=High Capacity Ender Tank
 item.enderpouch.name=Ender Pouch
 enderstorage.serverop=Operator
 

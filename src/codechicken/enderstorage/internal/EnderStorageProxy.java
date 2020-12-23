@@ -1,5 +1,6 @@
 package codechicken.enderstorage.internal;
 
+import codechicken.enderstorage.storage.liquid.TileEnderTankHighCapacity;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraftforge.common.MinecraftForge;
 import codechicken.lib.packet.PacketCustom;
@@ -30,6 +31,7 @@ public class EnderStorageProxy
         
         GameRegistry.registerTileEntity(TileEnderChest.class, "Ender Chest");
         GameRegistry.registerTileEntity(TileEnderTank.class, "Ender Tank");
+        GameRegistry.registerTileEntity(TileEnderTankHighCapacity.class, "High Capacity Ender Tank");
         
         PacketCustom.assignHandler(EnderStorageSPH.channel, new EnderStorageSPH());
         EnderStorageRecipe.init();

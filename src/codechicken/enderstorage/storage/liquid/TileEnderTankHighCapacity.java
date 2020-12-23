@@ -1,36 +1,30 @@
 package codechicken.enderstorage.storage.liquid;
 
-import java.util.List;
-
+import codechicken.core.fluid.FluidUtils;
+import codechicken.enderstorage.api.EnderStorageManager;
+import codechicken.enderstorage.common.TileFrequencyOwner;
+import codechicken.enderstorage.internal.EnderStorageSPH;
+import codechicken.enderstorage.storage.liquid.TankSynchroniser.TankState;
+import codechicken.lib.math.MathHelper;
+import codechicken.lib.packet.PacketCustom;
+import codechicken.lib.raytracer.IndexedCuboid6;
+import codechicken.lib.vec.*;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTankInfo;
 import net.minecraftforge.fluids.IFluidHandler;
-import net.minecraftforge.fluids.FluidStack;
-import codechicken.lib.math.MathHelper;
-import codechicken.core.fluid.FluidUtils;
-import codechicken.lib.packet.PacketCustom;
-import codechicken.lib.raytracer.IndexedCuboid6;
-import codechicken.lib.vec.Cuboid6;
-import codechicken.lib.vec.Rotation;
-import codechicken.lib.vec.Scale;
-import codechicken.lib.vec.Transformation;
-import codechicken.lib.vec.Translation;
-import codechicken.lib.vec.Vector3;
-import codechicken.enderstorage.api.EnderStorageManager;
-import codechicken.enderstorage.common.TileFrequencyOwner;
-import codechicken.enderstorage.internal.EnderStorageSPH;
-import codechicken.enderstorage.storage.liquid.TankSynchroniser.TankState;
 
-import static codechicken.lib.vec.Vector3.*;
+import java.util.List;
 
-public class TileEnderTank extends TileFrequencyOwner implements IFluidHandler, ITileEnderTanks
+import static codechicken.lib.vec.Vector3.center;
+
+public class TileEnderTankHighCapacity extends TileFrequencyOwner implements IFluidHandler, ITileEnderTanks
 {
-
     private static Cuboid6[] selectionBoxes = new Cuboid6[4];
     public static Transformation[] buttonT = new Transformation[3];
 
@@ -47,7 +41,7 @@ public class TileEnderTank extends TileFrequencyOwner implements IFluidHandler, 
     public TankStates.EnderTankState liquid_state = states.new EnderTankState();
     public TankStates.PressureState pressure_state = states.new PressureState();
 
-    private EnderLiquidStorage storage;
+    private EnderLiquidStorageHighCapacity storage;
     private boolean described;
 
     @Override
@@ -78,13 +72,13 @@ public class TileEnderTank extends TileFrequencyOwner implements IFluidHandler, 
     }
 
     public void reloadStorage() {
-        storage = (EnderLiquidStorage) EnderStorageManager.instance(worldObj.isRemote).getStorage(owner, freq, "liquid");
+        storage = (EnderLiquidStorageHighCapacity) EnderStorageManager.instance(worldObj.isRemote).getStorage(owner, freq, "liquid");
         if (!worldObj.isRemote)
             liquid_state.reloadStorage(storage);
     }
 
     @Override
-    public EnderLiquidStorage getStorage() {
+    public EnderLiquidStorageHighCapacity getStorage() {
         return storage;
     }
 
